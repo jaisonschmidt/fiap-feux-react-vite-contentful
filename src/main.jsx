@@ -2,30 +2,30 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 
 import {
-  BrowserRouter as Router,
-  Switch,
+  BrowserRouter,
+  Routes,
   Route,
 } from "react-router-dom";
+
+import { HelmetProvider } from 'react-helmet-async';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { Home } from './pages/Home';
 import { Post } from './pages/Post';
 
+const helmetContext = {};
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Router>
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route path="/post/:slug">
-          <Post />
-        </Route>
-        <Route path="*">
-          <Home />
-        </Route>
-      </Switch>
-    </Router>
+    <HelmetProvider context={helmetContext}>
+      <BrowserRouter>
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/post/:slug" element={<Post />} />
+          <Route path="*" />
+        </Routes>
+      </BrowserRouter>
+    </HelmetProvider>
   </React.StrictMode>,
 )

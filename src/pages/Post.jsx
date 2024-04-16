@@ -24,7 +24,7 @@ export const Post = () => {
                 console.log("post", entries);
                 setPost(entries.items[0] || null);
             });
-    }, []);
+    }, [slug]);
 
     return (
         <Layout>
